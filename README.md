@@ -147,6 +147,13 @@ For other platforms (Railway, Render, Heroku):
 - Set `PORT` (auto-detected) and `SESSION_SECRET` environment variables
 - Set `NODE_ENV=production`
 - Run `npm start`
+  
+## 🚀 Live Demo
+
+🌐 Live Application: (https://apexplanet-task-5.onrender.com/)
+
+📂 Source Code: https://github.com/yourusername/apexstore
+
 
 ## 🔧 Environment Variables
 
