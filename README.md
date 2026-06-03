@@ -152,8 +152,7 @@ For other platforms (Railway, Render, Heroku):
 
 🌐 Live Application: (https://apexplanet-task-5.onrender.com/)
 
-📂 Source Code: https://github.com/yourusername/apexstore
-
+📂 Source Code: (https://github.com/siripuramvaishnavi99-code/Apexplanet-task-5.git)
 
 ## 🔧 Environment Variables
 
