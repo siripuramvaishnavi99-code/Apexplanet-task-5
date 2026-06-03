@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 — Page Not Found | ApexStore</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container navbar-inner">
+      <a href="/" class="navbar-brand">Apex<span>Store</span></a>
+    </div>
+  </nav>
+
+  <main class="error-page" role="main">
+    <div class="fade-in">
+      <div class="error-code" aria-hidden="true">404</div>
+      <h1 class="error-title">Page Not Found</h1>
+      <p class="error-desc">Oops — the page you're looking for doesn't exist or may have been moved. Let's get you back on track.</p>
+      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+        <a href="/" class="btn btn-primary btn-lg">Go Home</a>
+        <a href="/products" class="btn btn-secondary btn-lg">Browse Products</a>
+      </div>
+      <div style="margin-top:40px;padding:20px;background:var(--gray-100);border-radius:var(--radius);text-align:left;max-width:380px;margin-left:auto;margin-right:auto;font-size:0.875rem">
+        <strong>Quick links:</strong>
+        <ul style="margin-top:8px;display:flex;flex-direction:column;gap:6px">
+          <li><a href="/" style="color:var(--primary)">→ Home</a></li>
+          <li><a href="/products" style="color:var(--primary)">→ Products</a></li>
+          <li><a href="/cart" style="color:var(--primary)">→ Shopping Cart</a></li>
+          <li><a href="/contact" style="color:var(--primary)">→ Contact Support</a></li>
+        </ul>
+      </div>
+    </div>
+  </main>
+
+  <script src="/js/cart.js"></script>
+  <script src="/js/main.js"></script>
+</body>
+</html>

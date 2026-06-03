@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Get in touch with the ApexStore team. We're here to help.">
+  <title>Contact Us — ApexStore</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container navbar-inner">
+      <a href="/" class="navbar-brand">Apex<span>Store</span></a>
+      <button class="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+      <ul class="navbar-nav">
+        <li><a href="/" class="nav-link">Home</a></li>
+        <li><a href="/products" class="nav-link">Products</a></li>
+        <li><a href="/about" class="nav-link">About</a></li>
+        <li><a href="/contact" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="navbar-actions">
+        <a href="/cart" class="cart-btn">🛒<span class="cart-count hidden">0</span></a>
+        <div data-auth="guest"><a href="/login" class="btn btn-primary btn-sm">Log In</a></div>
+        <div data-auth="user" class="hidden dropdown">
+          <div class="user-avatar" data-user-avatar data-toggle="dropdown" role="button" tabindex="0">U</div>
+          <div class="dropdown-menu">
+            <span style="padding:8px 14px;font-size:0.85rem;color:var(--gray-500);display:block" data-user-name></span>
+            <div class="dropdown-divider"></div>
+            <a href="/dashboard" class="dropdown-item">Dashboard</a>
+            <div class="dropdown-divider"></div>
+            <button class="dropdown-item danger" data-action="logout">Log Out</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <div style="background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;padding:64px 0;text-align:center">
+    <div class="container">
+      <span class="badge-label" style="background:rgba(255,255,255,0.15);color:#fff">We're Here to Help</span>
+      <h1 style="color:#fff;margin-top:12px">Get In Touch</h1>
+      <p style="color:rgba(255,255,255,0.8);max-width:480px;margin:12px auto 0">Have a question, feedback, or need support? Our team typically responds within 24 hours.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="contact-layout">
+        <!-- Info -->
+        <div>
+          <h2 style="margin-bottom:32px">Contact Information</h2>
+          <div class="contact-info-item">
+            <div class="contact-icon" aria-hidden="true">📍</div>
+            <div>
+              <div class="contact-info-title">Our Address</div>
+              <div class="contact-info-text">123 Commerce Street, Suite 400<br>San Francisco, CA 94102</div>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-icon" aria-hidden="true">📧</div>
+            <div>
+              <div class="contact-info-title">Email Us</div>
+              <div class="contact-info-text"><a href="mailto:support@apexstore.com" style="color:var(--primary)">support@apexstore.com</a></div>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-icon" aria-hidden="true">📞</div>
+            <div>
+              <div class="contact-info-title">Call Us</div>
+              <div class="contact-info-text">+1 (800) 555-APEX<br><span style="font-size:0.8rem">Mon–Fri, 9am–6pm PST</span></div>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-icon" aria-hidden="true">💬</div>
+            <div>
+              <div class="contact-info-title">Live Chat</div>
+              <div class="contact-info-text">Available Mon–Sat, 8am–8pm PST.<br>Average wait: under 2 minutes.</div>
+            </div>
+          </div>
+
+          <div style="margin-top:32px;padding:24px;background:var(--gray-100);border-radius:var(--radius)">
+            <h4 style="margin-bottom:12px">Frequently Asked Questions</h4>
+            <ul style="display:flex;flex-direction:column;gap:8px">
+              <li style="font-size:0.9rem;color:var(--gray-700)">🚚 Free shipping on orders over $100</li>
+              <li style="font-size:0.9rem;color:var(--gray-700)">↩ 30-day hassle-free returns</li>
+              <li style="font-size:0.9rem;color:var(--gray-700)">🔒 Secure checkout with SSL encryption</li>
+              <li style="font-size:0.9rem;color:var(--gray-700)">📦 Orders ship within 1–2 business days</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Form -->
+        <div>
+          <div class="card" id="contact-success" style="display:none">
+            <div class="card-body" style="text-align:center;padding:48px 24px">
+              <div style="font-size:3rem;margin-bottom:16px">✅</div>
+              <h3>Message Sent!</h3>
+              <p class="text-muted" style="margin-top:8px">Thanks for reaching out. We'll get back to you within 24 hours.</p>
+              <button class="btn btn-primary" style="margin-top:24px" onclick="document.getElementById('contact-success').style.display='none';document.getElementById('contact-form-wrap').style.display='block'">Send Another</button>
+            </div>
+          </div>
+          <div id="contact-form-wrap">
+            <h2 style="margin-bottom:24px">Send Us a Message</h2>
+            <form id="contact-form" novalidate aria-label="Contact form">
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+                <div class="form-group">
+                  <label class="form-label" for="c-name">Your Name *</label>
+                  <input type="text" id="c-name" class="form-control" required placeholder="Jane Doe">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="c-email">Email Address *</label>
+                  <input type="email" id="c-email" class="form-control" required placeholder="you@example.com">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="c-subject">Subject *</label>
+                <select id="c-subject" class="form-control" required>
+                  <option value="">Select a topic…</option>
+                  <option>Order question</option>
+                  <option>Return / Exchange</option>
+                  <option>Product question</option>
+                  <option>Technical support</option>
+                  <option>Partnership / Business</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="c-message">Your Message *</label>
+                <textarea id="c-message" class="form-control" rows="6" required placeholder="Describe your question in detail…"></textarea>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px">
+                <input type="checkbox" id="c-consent" required style="width:16px;height:16px">
+                <label for="c-consent" style="font-size:0.875rem;color:var(--gray-700)">I agree to the <a href="#" style="color:var(--primary)">Privacy Policy</a></label>
+              </div>
+              <button type="submit" class="btn btn-primary btn-lg">Send Message</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container"><div class="footer-bottom" style="border:none;padding:0"><p>© 2024 ApexStore. All rights reserved.</p></div></div>
+  </footer>
+
+  <script src="/js/cart.js"></script>
+  <script src="/js/main.js"></script>
+  <script>
+    document.getElementById('contact-form').addEventListener('submit', e => {
+      e.preventDefault();
+      const name = document.getElementById('c-name').value.trim();
+      const email = document.getElementById('c-email').value.trim();
+      const subject = document.getElementById('c-subject').value;
+      const message = document.getElementById('c-message').value.trim();
+      const consent = document.getElementById('c-consent').checked;
+
+      if (!name || name.length < 2) { Toast.error('Please enter your name'); return; }
+      if (!email.includes('@')) { Toast.error('Please enter a valid email'); return; }
+      if (!subject) { Toast.error('Please select a subject'); return; }
+      if (message.length < 10) { Toast.error('Message must be at least 10 characters'); return; }
+      if (!consent) { Toast.error('Please agree to the Privacy Policy'); return; }
+
+      // Simulate form submission
+      const btn = e.target.querySelector('[type=submit]');
+      btn.disabled = true; btn.textContent = 'Sending…';
+      setTimeout(() => {
+        document.getElementById('contact-form-wrap').style.display = 'none';
+        document.getElementById('contact-success').style.display = 'block';
+        e.target.reset();
+        btn.disabled = false; btn.textContent = 'Send Message';
+      }, 1000);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ApexStore — Premium products at unbeatable prices. Shop electronics, fashion, furniture, sports & more.">
+  <meta property="og:title" content="ApexStore — Shop Premium Products">
+  <meta property="og:description" content="Premium products at unbeatable prices. Fast shipping, easy returns.">
+  <title>ApexStore — Premium Online Store</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="container navbar-inner">
+      <a href="/" class="navbar-brand" aria-label="ApexStore Home">Apex<span>Store</span></a>
+      <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="navbar-nav" role="list">
+        <li><a href="/" class="nav-link">Home</a></li>
+        <li><a href="/products" class="nav-link">Products</a></li>
+        <li><a href="/about" class="nav-link">About</a></li>
+        <li><a href="/contact" class="nav-link">Contact</a></li>
+        <li data-auth="admin" class="hidden"><a href="/admin" class="nav-link">Admin</a></li>
+      </ul>
+      <div class="navbar-actions">
+        <a href="/cart" class="cart-btn" aria-label="Shopping cart">
+          🛒
+          <span class="cart-count hidden" aria-live="polite">0</span>
+        </a>
+        <div data-auth="guest">
+          <a href="/login" class="btn btn-primary btn-sm">Log In</a>
+        </div>
+        <div data-auth="user" class="hidden dropdown">
+          <div class="user-avatar" data-user-avatar data-toggle="dropdown" role="button" tabindex="0" aria-haspopup="true" aria-label="User menu">U</div>
+          <div class="dropdown-menu" role="menu">
+            <span style="padding:8px 14px;font-size:0.85rem;color:var(--gray-500);display:block" data-user-name>User</span>
+            <div class="dropdown-divider"></div>
+            <a href="/dashboard" class="dropdown-item" role="menuitem">Dashboard</a>
+            <a href="/cart" class="dropdown-item" role="menuitem">My Cart</a>
+            <div class="dropdown-divider"></div>
+            <button class="dropdown-item danger" data-action="logout" role="menuitem">Log Out</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="container">
+      <div class="hero-content slide-up">
+        <div class="hero-badge">✦ New arrivals every week</div>
+        <h1 class="hero-title" id="hero-title">Shop the <span class="highlight">Best Products</span> at Apex Prices</h1>
+        <p class="hero-desc">Discover curated electronics, fashion, furniture & more. Premium quality, fast delivery, and hassle-free returns.</p>
+        <div class="hero-actions">
+          <a href="/products" class="btn btn-secondary btn-lg">Shop Now</a>
+          <a href="/about" class="btn btn-lg" style="color:#fff;border-color:rgba(255,255,255,0.3);background:rgba(255,255,255,0.08)">Learn More</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat"><strong>12K+</strong><span>Products</span></div>
+          <div class="hero-stat"><strong>50K+</strong><span>Happy Customers</span></div>
+          <div class="hero-stat"><strong>4.9★</strong><span>Average Rating</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories -->
+  <section class="section section-sm">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge-label">Browse by Category</span>
+        <h2>What Are You Looking For?</h2>
+        <p>Explore our wide range of categories and find exactly what you need.</p>
+      </div>
+      <div class="categories-grid" role="list">
+        <a href="/products?category=electronics" class="category-card" role="listitem">
+          <span class="category-icon" aria-hidden="true">💻</span>
+          <div class="category-name">Electronics</div>
+          <div class="category-count">Laptops, Audio & More</div>
+        </a>
+        <a href="/products?category=fashion" class="category-card" role="listitem">
+          <span class="category-icon" aria-hidden="true">👔</span>
+          <div class="category-name">Fashion</div>
+          <div class="category-count">Watches, Ties & More</div>
+        </a>
+        <a href="/products?category=furniture" class="category-card" role="listitem">
+          <span class="category-icon" aria-hidden="true">🛋</span>
+          <div class="category-name">Furniture</div>
+          <div class="category-count">Chairs, Blankets & More</div>
+        </a>
+        <a href="/products?category=sports" class="category-card" role="listitem">
+          <span class="category-icon" aria-hidden="true">🏃</span>
+          <div class="category-name">Sports</div>
+          <div class="category-count">Gear, Shoes & More</div>
+        </a>
+        <a href="/products?category=kitchen" class="category-card" role="listitem">
+          <span class="category-icon" aria-hidden="true">☕</span>
+          <div class="category-name">Kitchen</div>
+          <div class="category-count">Coffee, Cookware & More</div>
+        </a>
+        <a href="/products" class="category-card" role="listitem" style="border-style:dashed">
+          <span class="category-icon" aria-hidden="true">✦</span>
+          <div class="category-name">All Products</div>
+          <div class="category-count">See everything</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Products -->
+  <section class="section" style="background:var(--gray-100)">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge-label">Handpicked for You</span>
+        <h2>Featured Products</h2>
+        <p>Our editors' top picks — the products our customers love most.</p>
+      </div>
+      <div class="product-grid" id="featured-products" aria-label="Featured products">
+        <!-- Loaded by main.js -->
+        <div class="loading-center" style="grid-column:1/-1"><div class="spinner"></div></div>
+      </div>
+      <div style="text-align:center;margin-top:40px">
+        <a href="/products" class="btn btn-primary btn-lg">View All Products</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Promo Banner -->
+  <section style="background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;padding:64px 0;text-align:center">
+    <div class="container">
+      <span class="badge-label" style="background:rgba(255,255,255,0.15);color:#fff">Limited Offer</span>
+      <h2 style="color:#fff;margin-top:8px">Free Shipping on Orders Over $100</h2>
+      <p style="color:rgba(255,255,255,0.8);margin-top:8px">No code needed. Just add to cart and save.</p>
+      <a href="/products" class="btn btn-lg" style="margin-top:28px;background:#fff;color:var(--primary)">Shop the Sale</a>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="section testimonials">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge-label">Customer Stories</span>
+        <h2>What Our Customers Say</h2>
+        <p>Real reviews from real people who love ApexStore.</p>
+      </div>
+      <div class="testimonials-grid">
+        <blockquote class="testimonial-card fade-in">
+          <span class="quote-icon" aria-hidden="true">"</span>
+          <p class="testimonial-text">The noise-cancelling headphones are absolutely phenomenal. Crystal-clear audio and I forgot what noise even sounds like. Worth every penny!</p>
+          <footer class="testimonial-author">
+            <div class="author-avatar" aria-hidden="true">S</div>
+            <div>
+              <div class="author-name">Sarah Johnson</div>
+              <div class="author-role">Software Engineer</div>
+            </div>
+          </footer>
+        </blockquote>
+        <blockquote class="testimonial-card fade-in">
+          <span class="quote-icon" aria-hidden="true">"</span>
+          <p class="testimonial-text">Fast shipping, great packaging, and the ergonomic chair changed my work-from-home setup completely. My back thanks me every day.</p>
+          <footer class="testimonial-author">
+            <div class="author-avatar" aria-hidden="true">M</div>
+            <div>
+              <div class="author-name">Marcus Lee</div>
+              <div class="author-role">Product Designer</div>
+            </div>
+          </footer>
+        </blockquote>
+        <blockquote class="testimonial-card fade-in">
+          <span class="quote-icon" aria-hidden="true">"</span>
+          <p class="testimonial-text">I've ordered five times now and the experience is always seamless. Easy returns, quick support, and products that exceed expectations.</p>
+          <footer class="testimonial-author">
+            <div class="author-avatar" aria-hidden="true">A</div>
+            <div>
+              <div class="author-name">Amelia Chen</div>
+              <div class="author-role">Marketing Lead</div>
+            </div>
+          </footer>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="/" class="footer-brand">Apex<span>Store</span></a>
+          <p class="footer-desc">Your one-stop destination for premium products at unbeatable prices. Quality you can trust, delivery you can count on.</p>
+          <div class="footer-social">
+            <a href="#" class="social-btn" aria-label="Twitter">𝕏</a>
+            <a href="#" class="social-btn" aria-label="Instagram">📸</a>
+            <a href="#" class="social-btn" aria-label="Facebook">f</a>
+            <a href="#" class="social-btn" aria-label="YouTube">▶</a>
+          </div>
+        </div>
+        <div>
+          <h3 class="footer-heading">Shop</h3>
+          <nav class="footer-links" aria-label="Shop navigation">
+            <a href="/products" class="footer-link">All Products</a>
+            <a href="/products?category=electronics" class="footer-link">Electronics</a>
+            <a href="/products?category=fashion" class="footer-link">Fashion</a>
+            <a href="/products?category=furniture" class="footer-link">Furniture</a>
+            <a href="/products?category=sports" class="footer-link">Sports</a>
+          </nav>
+        </div>
+        <div>
+          <h3 class="footer-heading">Account</h3>
+          <nav class="footer-links" aria-label="Account navigation">
+            <a href="/login" class="footer-link">Login</a>
+            <a href="/register" class="footer-link">Register</a>
+            <a href="/dashboard" class="footer-link">Dashboard</a>
+            <a href="/cart" class="footer-link">Cart</a>
+          </nav>
+        </div>
+        <div>
+          <h3 class="footer-heading">Company</h3>
+          <nav class="footer-links" aria-label="Company navigation">
+            <a href="/about" class="footer-link">About Us</a>
+            <a href="/contact" class="footer-link">Contact</a>
+            <a href="#" class="footer-link">Privacy Policy</a>
+            <a href="#" class="footer-link">Terms of Service</a>
+          </nav>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2024 ApexStore. All rights reserved.</p>
+        <p>Built with ♥ for great shopping experiences</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/cart.js"></script>
+  <script src="/js/main.js"></script>
+</body>
+</html>

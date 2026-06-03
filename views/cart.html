@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Your ApexStore shopping cart.">
+  <title>Shopping Cart — ApexStore</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container navbar-inner">
+      <a href="/" class="navbar-brand">Apex<span>Store</span></a>
+      <button class="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+      <ul class="navbar-nav">
+        <li><a href="/" class="nav-link">Home</a></li>
+        <li><a href="/products" class="nav-link">Products</a></li>
+        <li><a href="/contact" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="navbar-actions">
+        <a href="/cart" class="cart-btn">🛒<span class="cart-count hidden">0</span></a>
+        <div data-auth="guest"><a href="/login" class="btn btn-primary btn-sm">Log In</a></div>
+        <div data-auth="user" class="hidden dropdown">
+          <div class="user-avatar" data-user-avatar data-toggle="dropdown" role="button" tabindex="0">U</div>
+          <div class="dropdown-menu">
+            <span style="padding:8px 14px;font-size:0.85rem;color:var(--gray-500);display:block" data-user-name></span>
+            <div class="dropdown-divider"></div>
+            <a href="/dashboard" class="dropdown-item">Dashboard</a>
+            <div class="dropdown-divider"></div>
+            <button class="dropdown-item danger" data-action="logout">Log Out</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container cart-page" id="cart-section">
+    <nav class="breadcrumb"><a href="/">Home</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-current">Shopping Cart</span></nav>
+    <h1 style="margin-bottom:32px">Shopping Cart</h1>
+
+    <!-- Empty state -->
+    <div id="cart-empty" class="cart-empty hidden">
+      <div class="cart-empty-icon">🛒</div>
+      <h2>Your cart is empty</h2>
+      <p class="text-muted" style="margin:12px 0 28px">Looks like you haven't added anything yet.</p>
+      <a href="/products" class="btn btn-primary btn-lg">Start Shopping</a>
+    </div>
+
+    <!-- Cart content -->
+    <div id="cart-table-wrap" class="hidden">
+      <div class="cart-layout">
+        <div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+            <h2 style="font-size:1.1rem">Your Items</h2>
+            <button id="clear-cart-btn" class="btn btn-sm" style="color:var(--danger)">Clear Cart</button>
+          </div>
+          <table class="cart-table" aria-label="Cart items">
+            <thead>
+              <tr>
+                <th scope="col">Product</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Total</th>
+                <th scope="col"><span class="sr-only">Remove</span></th>
+              </tr>
+            </thead>
+            <tbody id="cart-tbody"></tbody>
+          </table>
+          <div style="margin-top:20px">
+            <a href="/products" class="btn btn-secondary">← Continue Shopping</a>
+          </div>
+        </div>
+
+        <!-- Summary -->
+        <div id="cart-summary-section" class="hidden">
+          <div class="cart-summary" aria-label="Order summary">
+            <h2 style="font-size:1.1rem;margin-bottom:20px">Order Summary</h2>
+            <div class="summary-row"><span>Subtotal</span><span id="summary-subtotal">$0.00</span></div>
+            <div class="summary-row"><span>Shipping</span><span id="summary-shipping">—</span></div>
+            <div class="summary-row" style="font-size:0.8rem;color:var(--gray-500)"><span>Tax</span><span>Calculated at checkout</span></div>
+            <div class="summary-row total"><span>Total</span><span class="amount" id="summary-total">$0.00</span></div>
+            <p style="font-size:0.8rem;color:var(--accent);margin:8px 0">✓ Free shipping on orders over $100</p>
+            <button class="btn btn-primary btn-block btn-lg" id="checkout-btn" style="margin-top:16px">Place Order</button>
+            <div style="text-align:center;margin-top:14px;font-size:0.8rem;color:var(--gray-500)">🔒 Secure checkout</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="height:80px"></div>
+
+  <script src="/js/cart.js"></script>
+  <script src="/js/main.js"></script>
+</body>
+</html>

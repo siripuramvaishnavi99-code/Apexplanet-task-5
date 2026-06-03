@@ -1,0 +1,266 @@
+{
+  "products": [
+    {
+      "id": "p1",
+      "name": "Wireless Noise-Cancelling Headphones",
+      "category": "electronics",
+      "price": 299.99,
+      "originalPrice": 399.99,
+      "description": "Premium wireless headphones with industry-leading noise cancellation, 30-hour battery life, and crystal-clear audio for an immersive listening experience.",
+      "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&q=80",
+      "stock": 45,
+      "rating": 4.8,
+      "reviews": 312,
+      "featured": true,
+      "badge": "Best Seller"
+    },
+    {
+      "id": "p2",
+      "name": "Minimalist Leather Watch",
+      "category": "fashion",
+      "price": 189.99,
+      "originalPrice": 249.99,
+      "description": "Handcrafted genuine leather strap with a Swiss movement dial. Water-resistant to 50m. Timeless elegance for any occasion.",
+      "image": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&q=80",
+      "stock": 28,
+      "rating": 4.7,
+      "reviews": 187,
+      "featured": true,
+      "badge": "New"
+    },
+    {
+      "id": "p3",
+      "name": "Smart Home Speaker",
+      "category": "electronics",
+      "price": 129.99,
+      "originalPrice": 179.99,
+      "description": "360° rich sound with built-in voice assistant. Stream music, set reminders, control smart home devices with just your voice.",
+      "image": "https://images.unsplash.com/photo-1545454675-3531b543be5d?w=600&q=80",
+      "stock": 60,
+      "rating": 4.5,
+      "reviews": 428,
+      "featured": true,
+      "badge": "Sale"
+    },
+    {
+      "id": "p4",
+      "name": "Ergonomic Office Chair",
+      "category": "furniture",
+      "price": 449.99,
+      "originalPrice": 599.99,
+      "description": "Fully adjustable lumbar support, breathable mesh back, and 4D armrests. Built for professionals who spend long hours at the desk.",
+      "image": "https://images.unsplash.com/photo-1580480055273-228ff5388ef8?w=600&q=80",
+      "stock": 15,
+      "rating": 4.9,
+      "reviews": 95,
+      "featured": true,
+      "badge": "Top Rated"
+    },
+    {
+      "id": "p5",
+      "name": "Ultra-Slim Laptop 15\"",
+      "category": "electronics",
+      "price": 1199.99,
+      "originalPrice": 1499.99,
+      "description": "14-core processor, 16GB RAM, 512GB SSD, and a stunning OLED display in a chassis under 1.2kg. Power and portability redefined.",
+      "image": "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600&q=80",
+      "stock": 20,
+      "rating": 4.8,
+      "reviews": 214,
+      "featured": false,
+      "badge": ""
+    },
+    {
+      "id": "p6",
+      "name": "Yoga Mat Pro",
+      "category": "sports",
+      "price": 79.99,
+      "originalPrice": 99.99,
+      "description": "6mm thick non-slip mat with alignment lines, eco-friendly TPE material, and carrying strap. Perfect for all skill levels.",
+      "image": "https://images.unsplash.com/photo-1592432678016-e910b452f9a2?w=600&q=80",
+      "stock": 80,
+      "rating": 4.6,
+      "reviews": 533,
+      "featured": false,
+      "badge": "Sale"
+    },
+    {
+      "id": "p7",
+      "name": "Ceramic Pour-Over Coffee Set",
+      "category": "kitchen",
+      "price": 64.99,
+      "originalPrice": 84.99,
+      "description": "Handmade ceramic dripper, carafe, and two mugs. Brews the perfect cup every time. Dishwasher safe. A gift for coffee lovers.",
+      "image": "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&q=80",
+      "stock": 35,
+      "rating": 4.7,
+      "reviews": 160,
+      "featured": false,
+      "badge": ""
+    },
+    {
+      "id": "p8",
+      "name": "Running Shoes — AeroFlex",
+      "category": "sports",
+      "price": 149.99,
+      "originalPrice": 199.99,
+      "description": "Lightweight carbon-fiber plate, responsive foam midsole, and breathable knit upper. Designed for PRs on any terrain.",
+      "image": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&q=80",
+      "stock": 50,
+      "rating": 4.9,
+      "reviews": 701,
+      "featured": false,
+      "badge": "Best Seller"
+    },
+    {
+      "id": "p9",
+      "name": "Mechanical Keyboard TKL",
+      "category": "electronics",
+      "price": 139.99,
+      "originalPrice": 169.99,
+      "description": "Tenkeyless layout with hot-swappable switches, per-key RGB backlight, PBT keycaps, and aluminum top frame. Tactile typing bliss.",
+      "image": "https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?w=600&q=80",
+      "stock": 30,
+      "rating": 4.8,
+      "reviews": 289,
+      "featured": false,
+      "badge": ""
+    },
+    {
+      "id": "p10",
+      "name": "Linen Throw Blanket",
+      "category": "furniture",
+      "price": 59.99,
+      "originalPrice": 79.99,
+      "description": "100% stonewashed Belgian linen. Naturally softens with every wash. Available in 8 muted tones. 130×170cm.",
+      "image": "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80",
+      "stock": 70,
+      "rating": 4.6,
+      "reviews": 384,
+      "featured": false,
+      "badge": "New"
+    },
+    {
+      "id": "p11",
+      "name": "Stainless Steel Water Bottle",
+      "category": "sports",
+      "price": 39.99,
+      "originalPrice": 54.99,
+      "description": "Triple-wall vacuum insulation keeps drinks cold 48h or hot 24h. 1L capacity, BPA-free, leak-proof lid. Lifetime warranty.",
+      "image": "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=600&q=80",
+      "stock": 100,
+      "rating": 4.7,
+      "reviews": 892,
+      "featured": false,
+      "badge": "Sale"
+    },
+    {
+      "id": "p12",
+      "name": "Silk Tie — Navy Stripe",
+      "category": "fashion",
+      "price": 49.99,
+      "originalPrice": 69.99,
+      "description": "100% pure silk, hand-stitched lining, classic 7.5cm blade width. Pairs perfectly with business formal or smart casual.",
+      "image": "https://images.unsplash.com/photo-1598029018509-3a82f9d2fd5e?w=600&q=80",
+      "stock": 40,
+      "rating": 4.5,
+      "reviews": 122,
+      "featured": false,
+      "badge": ""
+    }
+  ],
+  "users": [
+    {
+      "id": "u1",
+      "name": "Admin User",
+      "email": "admin@apexstore.com",
+      "password": "$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy",
+      "role": "admin",
+      "createdAt": "2024-01-01T00:00:00.000Z",
+      "avatar": "A"
+    },
+    {
+      "id": "u2",
+      "name": "Jane Doe",
+      "email": "jane@example.com",
+      "password": "$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy",
+      "role": "user",
+      "createdAt": "2024-02-15T10:30:00.000Z",
+      "avatar": "J"
+    },
+    {
+      "id": "14f97398-e225-4af9-b188-3fca51195847",
+      "name": "sunitha",
+      "email": "sunitha01@gmail.com",
+      "password": "$2a$10$aTc19LnNezc.w9lNGaa98e8V3GqDaQR/YA9HZVIP6yHECCg0SHU7e",
+      "role": "user",
+      "createdAt": "2026-06-03T08:08:04.475Z",
+      "avatar": "S"
+    }
+  ],
+  "orders": [
+    {
+      "id": "ord1",
+      "userId": "u2",
+      "items": [
+        {
+          "productId": "p1",
+          "name": "Wireless Noise-Cancelling Headphones",
+          "price": 299.99,
+          "qty": 1
+        },
+        {
+          "productId": "p6",
+          "name": "Yoga Mat Pro",
+          "price": 79.99,
+          "qty": 2
+        }
+      ],
+      "total": 459.97,
+      "status": "delivered",
+      "createdAt": "2024-03-10T14:00:00.000Z"
+    },
+    {
+      "id": "ord2",
+      "userId": "u2",
+      "items": [
+        {
+          "productId": "p3",
+          "name": "Smart Home Speaker",
+          "price": 129.99,
+          "qty": 1
+        }
+      ],
+      "total": 129.99,
+      "status": "processing",
+      "createdAt": "2024-04-01T09:00:00.000Z"
+    },
+    {
+      "id": "137dae11-0ac7-44d8-b84a-846c6704e9c6",
+      "userId": "14f97398-e225-4af9-b188-3fca51195847",
+      "items": [
+        {
+          "productId": "p3",
+          "name": "Smart Home Speaker",
+          "price": 129.99,
+          "qty": 1
+        },
+        {
+          "productId": "p5",
+          "name": "Ultra-Slim Laptop 15\"",
+          "price": 1199.99,
+          "qty": 1
+        },
+        {
+          "productId": "p8",
+          "name": "Running Shoes — AeroFlex",
+          "price": 149.99,
+          "qty": 1
+        }
+      ],
+      "total": 1479.97,
+      "status": "processing",
+      "createdAt": "2026-06-03T08:09:20.657Z"
+    }
+  ]
+}

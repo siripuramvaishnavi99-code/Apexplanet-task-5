@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Log in to your ApexStore account.">
+  <title>Login — ApexStore</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <main class="auth-page" role="main">
+    <div class="auth-card">
+      <div class="auth-logo"><a href="/">Apex<span>Store</span></a></div>
+      <h1 class="auth-title">Welcome back</h1>
+      <p class="auth-subtitle">Sign in to your account to continue shopping.</p>
+
+      <form id="login-form" novalidate aria-label="Login form">
+        <div class="form-group">
+          <label class="form-label" for="login-email">Email address</label>
+          <input type="email" id="login-email" class="form-control" placeholder="you@example.com" autocomplete="email" required aria-required="true">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="login-password">Password</label>
+          <div class="password-toggle">
+            <input type="password" id="login-password" class="form-control" placeholder="••••••••" autocomplete="current-password" required aria-required="true">
+            <button type="button" class="toggle-pw-btn" aria-label="Show password">👁</button>
+          </div>
+        </div>
+        <div style="text-align:right;margin-top:-8px;margin-bottom:20px">
+          <a href="#" style="font-size:0.875rem;color:var(--primary)">Forgot password?</a>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block btn-lg">Log In</button>
+      </form>
+
+      <div class="divider">or</div>
+      <div class="auth-footer">
+        Don't have an account? <a href="/register">Create one free</a>
+      </div>
+
+      <div style="margin-top:24px;padding:16px;background:var(--gray-100);border-radius:var(--radius-sm);font-size:0.8rem;color:var(--gray-500)">
+        <strong>Demo accounts:</strong><br>
+        Admin: admin@apexstore.com / Password1<br>
+        User: jane@example.com / Password1
+      </div>
+    </div>
+  </main>
+
+  <script src="/js/cart.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/auth.js"></script>
+</body>
+</html>

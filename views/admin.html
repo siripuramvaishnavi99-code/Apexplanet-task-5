@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard — ApexStore</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container navbar-inner">
+      <a href="/" class="navbar-brand">Apex<span>Store</span> <span style="font-size:0.7rem;background:var(--danger);color:#fff;padding:2px 8px;border-radius:50px;font-weight:600;margin-left:6px">ADMIN</span></a>
+      <button class="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+      <ul class="navbar-nav">
+        <li><a href="/" class="nav-link">Home</a></li>
+        <li><a href="/products" class="nav-link">Products</a></li>
+        <li><a href="/dashboard" class="nav-link">My Account</a></li>
+      </ul>
+      <div class="navbar-actions">
+        <div data-auth="user" class="hidden dropdown">
+          <div class="user-avatar" data-user-avatar data-toggle="dropdown" role="button" tabindex="0">A</div>
+          <div class="dropdown-menu">
+            <span style="padding:8px 14px;font-size:0.85rem;color:var(--gray-500);display:block" data-user-name></span>
+            <div class="dropdown-divider"></div>
+            <button class="dropdown-item danger" data-action="logout">Log Out</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div id="access-denied" class="error-page" style="display:none">
+    <div>
+      <div style="font-size:4rem">🔒</div>
+      <h2 class="error-title">Access Denied</h2>
+      <p class="error-desc">Admin access required.</p>
+      <a href="/login" class="btn btn-primary btn-lg">Log In</a>
+    </div>
+  </div>
+
+  <div id="admin-main" style="display:none">
+    <div class="container admin-layout">
+      <!-- Sidebar -->
+      <aside class="dashboard-sidebar">
+        <div class="sidebar-profile" style="background:linear-gradient(135deg,var(--dark),var(--dark-2))">
+          <div class="sidebar-avatar" id="admin-avatar">A</div>
+          <div class="sidebar-name" id="admin-name">Admin</div>
+          <div class="sidebar-email">Administrator</div>
+        </div>
+        <nav class="sidebar-nav">
+          <button class="sidebar-nav-item active" data-tab="products">📦 Products</button>
+          <button class="sidebar-nav-item" data-tab="orders">🛒 Orders</button>
+          <button class="sidebar-nav-item" data-tab="users">👥 Users</button>
+          <button class="sidebar-nav-item" data-tab="add-product">➕ Add Product</button>
+          <div style="height:12px"></div>
+          <a href="/dashboard" class="sidebar-nav-item">👤 My Account</a>
+          <button class="sidebar-nav-item" style="color:var(--danger)" data-action="logout">🚪 Log Out</button>
+        </nav>
+      </aside>
+
+      <main class="dashboard-content">
+        <!-- Products Tab -->
+        <div id="tab-products" class="tab-panel active">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;flex-wrap:wrap;gap:12px">
+            <h2>Products</h2>
+            <button class="btn btn-primary btn-sm" data-tab="add-product" onclick="document.querySelector('[data-tab=add-product]').click()">+ Add Product</button>
+          </div>
+          <div style="overflow-x:auto">
+            <table class="admin-table" aria-label="Products table">
+              <thead><tr><th>Image</th><th>Name</th><th>Category</th><th>Price</th><th>Stock</th><th>Featured</th><th>Actions</th></tr></thead>
+              <tbody id="products-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Orders Tab -->
+        <div id="tab-orders" class="tab-panel">
+          <h2 style="margin-bottom:24px">All Orders</h2>
+          <div style="overflow-x:auto">
+            <table class="admin-table" aria-label="Orders table">
+              <thead><tr><th>Order ID</th><th>User</th><th>Items</th><th>Total</th><th>Status</th><th>Date</th><th>Actions</th></tr></thead>
+              <tbody id="orders-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Users Tab -->
+        <div id="tab-users" class="tab-panel">
+          <h2 style="margin-bottom:24px">All Users</h2>
+          <div style="overflow-x:auto">
+            <table class="admin-table" aria-label="Users table">
+              <thead><tr><th>Avatar</th><th>Name</th><th>Email</th><th>Role</th><th>Joined</th><th>Actions</th></tr></thead>
+              <tbody id="users-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Add/Edit Product Tab -->
+        <div id="tab-add-product" class="tab-panel">
+          <h2 style="margin-bottom:24px" id="product-form-title">Add New Product</h2>
+          <form id="product-form" novalidate style="max-width:600px">
+            <input type="hidden" id="edit-product-id">
+            <div class="form-group">
+              <label class="form-label" for="p-name">Product Name *</label>
+              <input type="text" id="p-name" class="form-control" required placeholder="e.g. Wireless Headphones">
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+              <div class="form-group">
+                <label class="form-label" for="p-category">Category *</label>
+                <select id="p-category" class="form-control" required>
+                  <option value="">Select…</option>
+                  <option value="electronics">Electronics</option>
+                  <option value="fashion">Fashion</option>
+                  <option value="furniture">Furniture</option>
+                  <option value="sports">Sports</option>
+                  <option value="kitchen">Kitchen</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="p-badge">Badge</label>
+                <select id="p-badge" class="form-control">
+                  <option value="">None</option>
+                  <option value="New">New</option>
+                  <option value="Sale">Sale</option>
+                  <option value="Best Seller">Best Seller</option>
+                  <option value="Top Rated">Top Rated</option>
+                </select>
+              </div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px">
+              <div class="form-group">
+                <label class="form-label" for="p-price">Price ($) *</label>
+                <input type="number" id="p-price" class="form-control" min="0.01" step="0.01" required placeholder="29.99">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="p-original">Original Price ($)</label>
+                <input type="number" id="p-original" class="form-control" min="0" step="0.01" placeholder="Optional">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="p-stock">Stock *</label>
+                <input type="number" id="p-stock" class="form-control" min="0" required placeholder="0">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="p-image">Image URL</label>
+              <input type="url" id="p-image" class="form-control" placeholder="https://…">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="p-desc">Description *</label>
+              <textarea id="p-desc" class="form-control" required placeholder="At least 10 characters…"></textarea>
+            </div>
+            <div class="form-group" style="display:flex;align-items:center;gap:10px">
+              <input type="checkbox" id="p-featured" style="width:16px;height:16px">
+              <label class="form-label" for="p-featured" style="margin:0">Feature this product on homepage</label>
+            </div>
+            <div style="display:flex;gap:12px">
+              <button type="submit" class="btn btn-primary" id="product-submit-btn">Add Product</button>
+              <button type="button" class="btn btn-secondary" id="product-cancel-btn" style="display:none">Cancel Edit</button>
+            </div>
+          </form>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Edit Product Modal -->
+  <div class="modal-overlay" id="edit-modal">
+    <div class="modal" role="dialog" aria-labelledby="edit-modal-title" aria-modal="true">
+      <div class="modal-header">
+        <h3 class="modal-title" id="edit-modal-title">Edit Product</h3>
+        <button class="modal-close" aria-label="Close">×</button>
+      </div>
+      <div class="modal-body">
+        <p>Use the <strong>Add Product</strong> form to edit. Click Edit to pre-fill it.</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/cart.js"></script>
+  <script src="/js/main.js"></script>
+  <script>
+    const STATUSES = ['processing','shipped','delivered','cancelled'];
+
+    async function checkAdmin() {
+      try {
+        const { user } = await api('GET', '/auth/me');
+        if (user.role !== 'admin') throw new Error();
+        document.getElementById('admin-avatar').textContent = user.avatar || 'A';
+        document.getElementById('admin-name').textContent = user.name;
+        document.getElementById('admin-main').style.display = 'block';
+        loadProducts(); loadOrders(); loadUsers();
+      } catch {
+        document.getElementById('access-denied').style.display = 'flex';
+      }
+    }
+
+    // Tabs
+    document.querySelectorAll('[data-tab]').forEach(btn => {
+      if (!btn.dataset.tab) return;
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('[data-tab]').forEach(b => b.classList.remove('active'));
+        const panel = document.getElementById('tab-' + btn.dataset.tab);
+        if (panel) { panel.classList.add('active'); btn.classList.add('active'); }
+      });
+    });
+
+    // ── Products ──
+    async function loadProducts() {
+      const { products } = await api('GET', '/products');
+      document.getElementById('products-tbody').innerHTML = products.map(p => `
+        <tr>
+          <td><img src="${p.image}" class="admin-product-img" alt="${p.name}" loading="lazy"></td>
+          <td><strong>${p.name}</strong></td>
+          <td><span style="text-transform:capitalize">${p.category}</span></td>
+          <td>${fmt(p.price)}</td>
+          <td>${p.stock}</td>
+          <td>${p.featured ? '✓' : '—'}</td>
+          <td>
+            <div class="table-actions">
+              <button class="btn btn-sm btn-secondary" onclick="editProduct('${p.id}')">Edit</button>
+              <button class="btn btn-sm btn-danger" onclick="deleteProduct('${p.id}')">Delete</button>
+            </div>
+          </td>
+        </tr>`).join('');
+    }
+
+    async function editProduct(id) {
+      const { product } = await api('GET', `/products/${id}`);
+      document.getElementById('edit-product-id').value = product.id;
+      document.getElementById('p-name').value = product.name;
+      document.getElementById('p-category').value = product.category;
+      document.getElementById('p-price').value = product.price;
+      document.getElementById('p-original').value = product.originalPrice || '';
+      document.getElementById('p-stock').value = product.stock;
+      document.getElementById('p-image').value = product.image || '';
+      document.getElementById('p-desc').value = product.description;
+      document.getElementById('p-featured').checked = product.featured;
+      document.getElementById('p-badge').value = product.badge || '';
+      document.getElementById('product-form-title').textContent = 'Edit Product';
+      document.getElementById('product-submit-btn').textContent = 'Save Changes';
+      document.getElementById('product-cancel-btn').style.display = 'inline-flex';
+      document.querySelector('[data-tab="add-product"]').click();
+    }
+
+    async function deleteProduct(id) {
+      if (!confirm('Delete this product? This cannot be undone.')) return;
+      try { await api('DELETE', `/products/${id}`); Toast.success('Product deleted'); loadProducts(); }
+      catch (err) { Toast.error(err.message); }
+    }
+
+    document.getElementById('product-form').addEventListener('submit', async e => {
+      e.preventDefault();
+      const id = document.getElementById('edit-product-id').value;
+      const body = {
+        name: document.getElementById('p-name').value,
+        category: document.getElementById('p-category').value,
+        price: document.getElementById('p-price').value,
+        originalPrice: document.getElementById('p-original').value || undefined,
+        stock: document.getElementById('p-stock').value,
+        image: document.getElementById('p-image').value,
+        description: document.getElementById('p-desc').value,
+        featured: document.getElementById('p-featured').checked,
+        badge: document.getElementById('p-badge').value
+      };
+      try {
+        if (id) { await api('PUT', `/products/${id}`, body); Toast.success('Product updated!'); }
+        else { await api('POST', '/products', body); Toast.success('Product added!'); }
+        e.target.reset(); document.getElementById('edit-product-id').value = '';
+        document.getElementById('product-form-title').textContent = 'Add New Product';
+        document.getElementById('product-submit-btn').textContent = 'Add Product';
+        document.getElementById('product-cancel-btn').style.display = 'none';
+        loadProducts();
+        document.querySelector('[data-tab="products"]').click();
+      } catch (err) { Toast.error(err.message); }
+    });
+
+    document.getElementById('product-cancel-btn').addEventListener('click', () => {
+      document.getElementById('product-form').reset();
+      document.getElementById('edit-product-id').value = '';
+      document.getElementById('product-form-title').textContent = 'Add New Product';
+      document.getElementById('product-submit-btn').textContent = 'Add Product';
+      document.getElementById('product-cancel-btn').style.display = 'none';
+    });
+
+    // ── Orders ──
+    async function loadOrders() {
+      const { orders } = await api('GET', '/orders');
+      document.getElementById('orders-tbody').innerHTML = orders.map(o => `
+        <tr>
+          <td><code style="font-size:0.8rem">#${o.id.slice(0,8).toUpperCase()}</code></td>
+          <td>${o.userId.slice(0,8)}</td>
+          <td>${o.items.length} item(s)</td>
+          <td>${fmt(o.total)}</td>
+          <td><span class="order-status status-${o.status}">${o.status}</span></td>
+          <td>${new Date(o.createdAt).toLocaleDateString()}</td>
+          <td>
+            <select class="form-control" style="padding:6px;font-size:0.8rem;min-width:120px" onchange="updateOrderStatus('${o.id}',this.value)">
+              ${STATUSES.map(s => `<option value="${s}" ${s===o.status?'selected':''}>${s}</option>`).join('')}
+            </select>
+          </td>
+        </tr>`).join('');
+    }
+
+    async function updateOrderStatus(id, status) {
+      try { await api('PUT', `/orders/${id}/status`, { status }); Toast.success('Status updated'); }
+      catch (err) { Toast.error(err.message); loadOrders(); }
+    }
+
+    // ── Users ──
+    async function loadUsers() {
+      const { users } = await api('GET', '/users');
+      document.getElementById('users-tbody').innerHTML = users.map(u => `
+        <tr>
+          <td><div style="width:36px;height:36px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700">${u.avatar||u.name[0]}</div></td>
+          <td><strong>${u.name}</strong></td>
+          <td>${u.email}</td>
+          <td><span style="text-transform:capitalize;font-weight:600;color:${u.role==='admin'?'var(--danger)':'var(--primary)'}">${u.role}</span></td>
+          <td>${new Date(u.createdAt).toLocaleDateString()}</td>
+          <td>${u.role==='admin'?'<span style="color:var(--gray-500);font-size:0.8rem">Protected</span>':`<button class="btn btn-sm btn-danger" onclick="deleteUser('${u.id}','${u.name}')">Delete</button>`}</td>
+        </tr>`).join('');
+    }
+
+    async function deleteUser(id, name) {
+      if (!confirm(`Delete user "${name}"? This cannot be undone.`)) return;
+      try { await api('DELETE', `/users/${id}`); Toast.success('User deleted'); loadUsers(); }
+      catch (err) { Toast.error(err.message); }
+    }
+
+    document.addEventListener('DOMContentLoaded', checkAdmin);
+  </script>
+</body>
+</html>

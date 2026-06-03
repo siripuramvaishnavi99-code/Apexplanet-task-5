@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Create your free ApexStore account.">
+  <title>Register — ApexStore</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <main class="auth-page" role="main">
+    <div class="auth-card">
+      <div class="auth-logo"><a href="/">Apex<span>Store</span></a></div>
+      <h1 class="auth-title">Create your account</h1>
+      <p class="auth-subtitle">Join thousands of happy ApexStore shoppers.</p>
+
+      <form id="register-form" novalidate aria-label="Registration form">
+        <div class="form-group">
+          <label class="form-label" for="reg-name">Full name</label>
+          <input type="text" id="reg-name" class="form-control" placeholder="Jane Doe" autocomplete="name" required aria-required="true">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="reg-email">Email address</label>
+          <input type="email" id="reg-email" class="form-control" placeholder="you@example.com" autocomplete="email" required aria-required="true">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="reg-password">Password</label>
+          <div class="password-toggle">
+            <input type="password" id="reg-password" class="form-control" placeholder="Min. 6 characters" autocomplete="new-password" required aria-required="true" aria-describedby="password-strength">
+            <button type="button" class="toggle-pw-btn" aria-label="Show password">👁</button>
+          </div>
+          <p id="password-strength" class="form-hint" aria-live="polite"></p>
+          <p class="form-hint">Must contain uppercase letter and number.</p>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="reg-confirm">Confirm password</label>
+          <div class="password-toggle">
+            <input type="password" id="reg-confirm" class="form-control" placeholder="Repeat your password" autocomplete="new-password" required aria-required="true">
+            <button type="button" class="toggle-pw-btn" aria-label="Show password">👁</button>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block btn-lg">Create Account</button>
+        <p style="font-size:0.78rem;color:var(--gray-500);text-align:center;margin-top:12px">By creating an account you agree to our Terms of Service.</p>
+      </form>
+
+      <div class="divider">or</div>
+      <div class="auth-footer">Already have an account? <a href="/login">Log in</a></div>
+    </div>
+  </main>
+
+  <script src="/js/cart.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/auth.js"></script>
+</body>
+</html>

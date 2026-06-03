@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Browse all products at ApexStore. Filter by category, price and sort to find what you need.">
+  <title>Products — ApexStore</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="container navbar-inner">
+      <a href="/" class="navbar-brand">Apex<span>Store</span></a>
+      <button class="hamburger" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      <ul class="navbar-nav" role="list">
+        <li><a href="/" class="nav-link">Home</a></li>
+        <li><a href="/products" class="nav-link">Products</a></li>
+        <li><a href="/about" class="nav-link">About</a></li>
+        <li><a href="/contact" class="nav-link">Contact</a></li>
+        <li data-auth="admin" class="hidden"><a href="/admin" class="nav-link">Admin</a></li>
+      </ul>
+      <div class="navbar-actions">
+        <a href="/cart" class="cart-btn" aria-label="Shopping cart">🛒<span class="cart-count hidden">0</span></a>
+        <div data-auth="guest"><a href="/login" class="btn btn-primary btn-sm">Log In</a></div>
+        <div data-auth="user" class="hidden dropdown">
+          <div class="user-avatar" data-user-avatar data-toggle="dropdown" role="button" tabindex="0">U</div>
+          <div class="dropdown-menu">
+            <span style="padding:8px 14px;font-size:0.85rem;color:var(--gray-500);display:block" data-user-name>User</span>
+            <div class="dropdown-divider"></div>
+            <a href="/dashboard" class="dropdown-item">Dashboard</a>
+            <div class="dropdown-divider"></div>
+            <button class="dropdown-item danger" data-action="logout">Log Out</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span class="breadcrumb-sep" aria-hidden="true">›</span>
+      <span class="breadcrumb-current">Products</span>
+    </nav>
+
+    <div class="section-header" style="text-align:left;margin-bottom:28px">
+      <h1 style="font-size:1.75rem">All Products</h1>
+      <p id="results-count" class="text-muted" aria-live="polite"></p>
+    </div>
+
+    <!-- Filters -->
+    <div class="filters-bar" role="search">
+      <div class="search-box">
+        <span class="search-icon" aria-hidden="true">🔍</span>
+        <input type="search" id="search-input" class="form-control" placeholder="Search products…" aria-label="Search products">
+      </div>
+      <div class="filters-group">
+        <select id="category-filter" class="form-control filter-select" aria-label="Filter by category">
+          <option value="all">All Categories</option>
+          <option value="electronics">Electronics</option>
+          <option value="fashion">Fashion</option>
+          <option value="furniture">Furniture</option>
+          <option value="sports">Sports</option>
+          <option value="kitchen">Kitchen</option>
+        </select>
+        <select id="sort-filter" class="form-control filter-select" aria-label="Sort products">
+          <option value="">Default Sort</option>
+          <option value="price_asc">Price: Low to High</option>
+          <option value="price_desc">Price: High to Low</option>
+          <option value="rating">Top Rated</option>
+          <option value="name">Name A-Z</option>
+        </select>
+        <input type="number" id="min-price" class="form-control" style="width:100px" placeholder="Min $" min="0" aria-label="Minimum price">
+        <input type="number" id="max-price" class="form-control" style="width:100px" placeholder="Max $" min="0" aria-label="Maximum price">
+        <button class="btn btn-secondary btn-sm" id="clear-filters">Clear</button>
+      </div>
+    </div>
+
+    <div class="product-grid" id="products-grid" aria-label="Product list" aria-live="polite">
+      <div class="loading-center" style="grid-column:1/-1"><div class="spinner"></div></div>
+    </div>
+  </div>
+
+  <!-- Page spacing -->
+  <div style="height:80px"></div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom" style="border-top:none;padding-top:0">
+        <p>© 2024 ApexStore. All rights reserved.</p>
+        <nav><a href="/about" class="footer-link" style="margin-right:16px">About</a><a href="/contact" class="footer-link">Contact</a></nav>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/cart.js"></script>
+  <script src="/js/main.js"></script>
+  <script>
+    let debounceTimer;
+    const params = new URLSearchParams(location.search);
+
+    function getFilters() {
+      return {
+        search: document.getElementById('search-input').value.trim(),
+        category: document.getElementById('category-filter').value,
+        sort: document.getElementById('sort-filter').value,
+        minPrice: document.getElementById('min-price').value,
+        maxPrice: document.getElementById('max-price').value
+      };
+    }
+
+    async function loadProducts() {
+      const grid = document.getElementById('products-grid');
+      grid.innerHTML = '<div class="loading-center" style="grid-column:1/-1"><div class="spinner"></div></div>';
+      const filters = getFilters();
+      const qs = new URLSearchParams();
+      if (filters.search) qs.set('search', filters.search);
+      if (filters.category && filters.category !== 'all') qs.set('category', filters.category);
+      if (filters.sort) qs.set('sort', filters.sort);
+      if (filters.minPrice) qs.set('minPrice', filters.minPrice);
+      if (filters.maxPrice) qs.set('maxPrice', filters.maxPrice);
+      try {
+        const { products, total } = await api('GET', '/products?' + qs);
+        document.getElementById('results-count').textContent = `${total} product${total !== 1 ? 's' : ''} found`;
+        if (total === 0) {
+          grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:64px 0"><p class="text-muted">No products match your filters.</p><button class="btn btn-secondary" onclick="clearFilters()">Clear Filters</button></div>';
+          return;
+        }
+        grid.innerHTML = products.map(p => renderProductCard(p)).join('');
+        initLazyImages();
+        initAddToCart();
+      } catch (err) {
+        grid.innerHTML = '<p class="text-muted text-center" style="grid-column:1/-1">Failed to load products.</p>';
+      }
+    }
+
+    function clearFilters() {
+      document.getElementById('search-input').value = '';
+      document.getElementById('category-filter').value = 'all';
+      document.getElementById('sort-filter').value = '';
+      document.getElementById('min-price').value = '';
+      document.getElementById('max-price').value = '';
+      loadProducts();
+    }
+
+    document.getElementById('clear-filters').addEventListener('click', clearFilters);
+    ['category-filter','sort-filter'].forEach(id => {
+      document.getElementById(id).addEventListener('change', loadProducts);
+    });
+    ['search-input','min-price','max-price'].forEach(id => {
+      document.getElementById(id).addEventListener('input', () => {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(loadProducts, 350);
+      });
+    });
+
+    // Pre-fill from URL params
+    if (params.get('category')) document.getElementById('category-filter').value = params.get('category');
+    if (params.get('search')) document.getElementById('search-input').value = params.get('search');
+
+    document.addEventListener('DOMContentLoaded', loadProducts);
+  </script>
+</body>
+</html>
